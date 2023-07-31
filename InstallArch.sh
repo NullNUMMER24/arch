@@ -1,42 +1,10 @@
 #!/bin/bash
 
+######################################################################
+# country specific things                                            #
+######################################################################
 # Set the keyboard layout to German
 loadkeys de-latin1
-
-# List available disks
-lsblk
-
-# Prompt for the partition to install Arch Linux
-echo "Please enter the target disk to install Arch Linux (e.g., /dev/sda):"
-read target_disk
-
-# Verify internet connectivity
-ping -c 3 archlinux.org || (echo "No internet connection. Please check your network." && exit 1)
-
-# Update the system clock
-timedatectl set-ntp true
-
-# Partition the disk
-parted "$target_disk" mklabel gpt
-parted "$target_disk" mkpart primary ext4 1MiB 100%
-mkfs.ext4 "${target_disk}1"
-mount "${target_disk}1" /mnt
-
-# Update the mirrorlist (optional, you can skip this if you want to use the default mirrorlist)
-curl -o /etc/pacman.d/mirrorlist "https://archlinux.org/mirrorlist/all/"
-sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist
-grep -A 1 "Switzerland" /etc/pacman.d/mirrorlist | grep -v "#" > /etc/pacman.d/mirrorlist.tmp
-rankmirrors -n 6 /etc/pacman.d/mirrorlist.tmp > /etc/pacman.d/mirrorlist
-rm /etc/pacman.d/mirrorlist.tmp
-
-# Install the base system
-pacstrap /mnt base linux linux-firmware
-
-# Generate an fstab file
-genfstab -U /mnt >> /mnt/etc/fstab
-
-# Change root into the new system
-arch-chroot /mnt /bin/bash <<EOF
 
 # Set the time zone to Switzerland/Zurich
 ln -sf /usr/share/zoneinfo/Europe/Zurich /etc/localtime
@@ -49,8 +17,92 @@ locale-gen
 # Set the default locale
 echo "LANG=de_CH.UTF-8" > /etc/locale.conf
 
-# Set the hostname (change 'myhostname' to your desired hostname)
-echo "code" > /etc/hostname
+######################################################################
+# user prompts                                                       #
+######################################################################
+# Select username
+echo "Please enter your username"
+read USER
+
+# Select hostname
+echo "Please enter your hostname"
+read HOST
+
+# List available disks
+lsblk
+
+# Prompt for the partition to install Arch Linux
+echo "Please enter the target disk to install Arch Linux (e.g., /dev/sda):"
+read target_disk
+
+# Choose DE
+echo "Please choose your Desktop Environment (DE)
+echo "1. GNOME"
+echo "2. KDE"
+echo "3. i3"
+read Desktop
+
+######################################################################
+# make filesystem                                                    #
+######################################################################
+echo -e "\nCreating Filesystems...\n"
+
+mkfs.vfat -F32 -n "EFISYSTEM" "${EFI}"
+mkswap "${SWAP}"
+swapon "${SWAP}"
+mkfs.ext4 -L "ROOT" "${ROOT}"
+
+# mount target
+mount -t ext4 "${ROOT}" /mnt
+mkdir /mnt/boot
+mount -t vfat "${EFI}" /mnt/boot/
+
+# Update the system clock
+timedatectl set-ntp true
+
+######################################################################
+# install Arch Linux                                                 #
+######################################################################
+echo "----------------------------------------------"
+echo "-- INSTALLING Arch Linux BASE on Main Drive --"
+echo "----------------------------------------------"
+pacstrap /mnt base base-devel --noconfirm --needed
+
+# kernel
+pacstrap /mnt linux linux-firmware --noconfirm --needed
+
+
+######################################################################
+# setup dependencies                                                 #
+######################################################################
+echo "--------------------------------------"
+echo "-- Setup Dependencies               --"
+echo "--------------------------------------"
+
+pacstrap /mnt networkmanager network-manager-applet wireless_tools nano intel-ucode bluez bluez-utils blueman git --noconfirm --needed
+
+# Generate an fstab file
+genfstab -U /mnt >> /mnt/etc/fstab
+
+######################################################################
+# Desktop Environments (DE)                                          #
+######################################################################
+if [[ $DESKTOP == '1' ]]
+then 
+    pacman -S gnome gdm --noconfirm --needed
+    systemctl enable gdm
+elif [[ $DESKTOP == '2' ]]
+then
+    pacman -S plasma sddm kde-applications --noconfirm --needed
+    systemctl enable sddm
+elif [[ $DESKTOP == '3' ]]
+then
+    pacman -S i3-wm --noconfirm --needed
+    systemctl enable sddm
+
+
+# Change root into the new system
+arch-chroot /mnt /bin/bash <<EOF
 
 # Set the root password (change 'your_password' to your desired root password)
 echo "root:Passwort" | chpasswd
