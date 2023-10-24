@@ -1,0 +1,11 @@
+---
+- name: "customize my arch"
+  hosts: all
+  become: true
+  tasks:
+    - name: Create souce folder
+      ansible.builtin.file
+        path: /home/$USER/.Ressouces
+        state: directory
+        mode: '0755'
+
