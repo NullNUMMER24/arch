@@ -1,0 +1,20 @@
+#!/bin/bash
+wlanif=$(cat /proc/net/wireless | perl -ne '/(\w+):/ && print $1')
+IP_ADDRESS=$(ip route get 1 | awk '{print $(NF-2);exit}')
+#rxcur=$(iwconfig "$wlanif" | sed -n 's/ *Link Quality=\([0-9]*\)\/.*/\1/p')
+#rxmax=$(iwconfig "$wlanif" | sed -n 's/ *Link Quality=.*\/\([0-9]*\).*/\1/p')
+#rxquality=$((rxcur * 100 / rxmax))
+rxbitrate=$(iw dev "$wlanif" link |  awk '/rx bitrate/{print $3 " "$4}')
+ssid=$(iw dev "$wlanif" link | awk '/SSID/{ print $2 }')
+
+case $BLOCK_BUTTON in
+	1) twmnc $(echo "$ssid" @ "$rxbitrate")
+		;;
+	3) echo -n "$IP_ADDRESS" | xclip -q -se c
+	       	;;
+esac
+
+  echo "${IP_ADDRESS} " # full text
+  echo "${IP_ADDRESS} " # short text
+  echo "#b3eeaf"
+  echo "#155011"

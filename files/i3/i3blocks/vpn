@@ -1,0 +1,13 @@
+#!/bin/bash
+if [[ -n $(ip link | grep -e tun0 -e vpn0 -e wg_config | grep "UP") ]]
+then
+	echo "  "
+	echo ""
+	echo "#b3eeaf"
+	echo "#155011"
+ else
+	echo "  "
+	echo ""
+	echo "#ff0000"
+	echo "#000000"
+fi 

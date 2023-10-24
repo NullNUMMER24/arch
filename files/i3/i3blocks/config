@@ -1,0 +1,108 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# background
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+command=$HOME/.config/i3blocks/$BLOCK_NAME
+separator_block_width=10
+markup=none
+
+# Mediaplayers section
+# Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
+[mediaplayer]
+instance=clementine
+align=right
+color=#ffffff
+interval=3
+signal=10
+separator=false
+
+[volume]
+label=-  
+interval=once
+signal=10
+
+# Stopwatch https://github.com/JadielTeofilo/i3blocks-stop-watch
+[stopwatch]
+label=⏱
+interval=1
+
+# Key indicator section
+[keyindicator]
+instance=CAPS
+interval=once
+signal=11
+
+[keyindicator]
+instance=NUM
+interval=once
+signal=11
+
+# System resources section
+[keymapping]
+interval=once
+label= 
+signal=12
+
+[battery]
+label=   
+interval=5
+
+[load_average]
+interval=5
+label=  
+
+[memory]
+label= 
+interval=5
+
+# Network section
+[bandwidth]
+interval=3
+align=center
+min_width=90
+
+[iface]
+label=  
+interval=5
+
+[vpn]
+interval=5
+
+[externalip]
+interval=15
+label=  
+
+# Date & Time section
+[date]
+label=  
+interval=60
+
+[time]
+label=  
+command=date '+%H:%M:%S '
+interval=1
+color=#99ecff
+background=#004f61

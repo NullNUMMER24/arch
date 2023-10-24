@@ -1,0 +1,15 @@
+#!/bin/bash
+
+printdate=$(date '+%a, %d.%m.%y (%V)')
+
+case $BLOCK_BUTTON in
+	1) gsimplecal
+		;;
+	3) printf $(date '+%y%m%d') | xclip -q -se c
+		;;
+esac
+
+echo "$printdate " # full text
+echo "$printdate " # short text
+echo "#99ecff"
+echo "#004f61"

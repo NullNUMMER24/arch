@@ -1,0 +1,15 @@
+#!/bin/bash
+# 181114 emak	something changed
+# 190402 emak	added background color
+# 200504 emak	removed "sleep 0.1" from XF86Audio, changed colors
+
+echo "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ if ($3 == "[MUTED]") { print " muted" } else { print $2*100"%" }}') "
+echo "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ if ($3 == "[MUTED]") { print " muted" } else { print $2*100"%" }}') "
+echo "#ffffff"
+#echo "#ffb618"
+
+case $BLOCK_BUTTON in
+	1) /usr/bin/xdotool key XF86AudioRaiseVolume && pkill -RTMIN+10 i3blocks ;;
+	2) /usr/bin/xdotool key XF86AudioMute && pkill -RTMIN+10 i3blocks ;;
+	3) /usr/bin/xdotool key XF86AudioLowerVolume && pkill -RTMIN+10 i3blocks ;;
+esac

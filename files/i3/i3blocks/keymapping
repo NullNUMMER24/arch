@@ -1,0 +1,8 @@
+#!/bin/bash
+# 190403 emak	fixed for i3blocks-git
+# requires xkblayout-state-git 
+
+echo " $(/usr/bin/xkblayout-state print %s) "
+echo " $(/usr/bin/xkblayout-state print %s) "
+echo "#000000"
+echo "#ffffff"

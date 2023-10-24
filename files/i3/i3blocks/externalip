@@ -1,0 +1,13 @@
+#!/bin/bash
+
+IP=$(curl -s -m 5 ipinfo.io/ip)
+
+case $BLOCK_BUTTON in
+	3) echo -n "$IP" | xclip -q -se c
+		;;
+esac
+
+echo "$IP " # full text
+echo "$IP " # short text
+echo "#b3eeaf"
+echo "#155011"

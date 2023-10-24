@@ -1,0 +1,50 @@
+#!/bin/bash
+
+DIR=/dev/shm/i3blocks-stop-watch
+mkdir -p "$DIR"
+
+STATUS_FILE=$DIR/status
+touch $STATUS_FILE
+: "${STATUS:=$(<$STATUS_FILE)}" "${STATUS:=reset}"
+
+START_FILE=$DIR/start
+touch $START_FILE
+: "${START:=$(<$START_FILE)}" "${START:=$(date +%s)}"
+
+STOP_FILE=$DIR/stop
+touch $STOP_FILE
+: "${STOP:=$(<$STOP_FILE)}" "${STOP:=$(date +%s)}"
+
+if [[ $BLOCK_BUTTON = 1 ]]; then
+	# start/stop on left-click
+	if [[ $STATUS = running ]]; then
+		STATUS=stopped
+		date +%s >$STOP_FILE
+	else
+		STATUS=running
+		CUR=$(date +%s)
+		START=$((CUR - STOP + START))
+		echo "$START" >$START_FILE
+		STOP=$CUR
+		echo "$STOP" >$STOP_FILE
+	fi
+elif [[ $BLOCK_BUTTON = 3 ]]; then
+	# reset on right-click
+	STATUS=reset
+fi
+
+echo $STATUS >$STATUS_FILE
+
+if [[ $STATUS = reset ]]; then
+	echo >$START_FILE
+	echo >$STOP_FILE
+	echo
+	exit 0
+fi
+
+if [[ $STATUS = running ]]; then
+	STOP=$(date +%s)
+	echo "$STOP" >$STOP_FILE
+fi
+
+date -u --date=@$((STOP - START)) '+%H:%M:%S'
