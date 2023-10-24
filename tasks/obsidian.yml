@@ -1,0 +1,5 @@
+- name: install Obsidian
+  community.general.pacman:
+    name:
+    - obsidian
+    state: present

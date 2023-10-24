@@ -3,9 +3,10 @@
   hosts: all
   become: true
   tasks:
-    - name: Create souce folder
-      ansible.builtin.file
-        path: /home/$USER/.Ressouces
-        state: directory
-        mode: '0755'
+    - name: dotfiles
+      include_tasks: tasks/dotfiles.yml
+      when: dotfiles
 
+    - name: fonts
+      include_tasks: tasks/fonts.yml
+      when: fonts

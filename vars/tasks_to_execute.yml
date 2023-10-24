@@ -1,0 +1,10 @@
+# System
+dotfiles: true
+fonts: true
+
+# Terminal
+zsh: true
+alacritty: true
+
+
+

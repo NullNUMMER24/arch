@@ -1,0 +1,5 @@
+- name: install spotify
+  community.general.pacman:
+    name:
+    - spotify
+    state: present
