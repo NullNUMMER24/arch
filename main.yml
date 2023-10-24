@@ -10,3 +10,27 @@
     - name: fonts
       include_tasks: tasks/fonts.yml
       when: fonts
+
+    - name: zsh
+      include_tasks: tasks/zsh.yml
+      when: zsh
+
+    - name: alacritty
+      include_tasks: tasks/alacritty.yml
+      when: alacritty
+    
+    - name: obsidian
+      include_tasks: tasks/obsidian.yml
+      when: obsidian
+
+    - name: chromium
+      include_tasks: tasks/chromium.yml
+      when: chromium
+
+    - name: yubikey
+      include_tasks: tasks/yubikey.yml
+      when: yubikey
+
+    - name: spotify
+      include_tasks: tasks/spotify.yml
+      when: spotify
