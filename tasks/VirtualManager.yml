@@ -1,0 +1,24 @@
+- name: Install KVM packages
+  community.general.pacman:
+    name:
+    - qemu
+    - virt-manager
+    - virt-viewer
+    - dnsmasq
+    - vde2
+    - bridge-utils
+    - openbsd-netcat
+    - dmidecode
+    state: present
+
+- name: Install libguestfs
+  community.general.pacman:
+    name:
+    - libguestfs
+    state: present
+
+- name: enable libvirt service
+  ansible.builtin.service:
+    name: libvirtd.service
+    state: started
+    enabled: yes

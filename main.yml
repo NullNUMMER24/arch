@@ -1,6 +1,6 @@
 ---
 - name: "customize my arch"
-  hosts: all
+  hosts: testclients
   become: true
   tasks:
     - name: dotfiles
