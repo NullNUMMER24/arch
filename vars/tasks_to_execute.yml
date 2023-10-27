@@ -1,4 +1,5 @@
 # System
+InstallArch: true
 dotfiles: true
 fonts: true
 
