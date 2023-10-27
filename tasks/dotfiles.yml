@@ -1,3 +1,13 @@
+- name: Install i3
+   community.general.pacman:
+    name:
+    - i3-wm
+    - i3blocks
+    - i3lock-color
+    state: present
+    executable: yay
+    extra_args: --builder /var/cache/yay
+
 - name: Copy i3 config
   ansible.builtin.copy:
     src: "../files/i3/config"
@@ -6,4 +16,4 @@
 - name: Copy i3blocks
   ansible.builtin.copy:
     src: "../files/i3/i3blocks"
-    dest: "~.config/i3blocks"
+    dest: "~/.config/i3blocks"
