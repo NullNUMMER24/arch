@@ -1,8 +1,12 @@
 ---
 - name: "customize my arch"
-  hosts: testclients
+  hosts: localhost
   become: true
   tasks:
+    - name: Include Variables
+      include_vars:
+        file: vars/tasks_to_execute.yml
+
     - name: dotfiles
       include_tasks: tasks/dotfiles.yml
       when: dotfiles
