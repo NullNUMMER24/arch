@@ -471,7 +471,7 @@ bindsym $mod+t exec rofi -show window \
 bar {
         status_command i3blocks -c /home/$USER/.config/i3blocks/i3blocks.conf
         font pango: Droid Sans Mono 11
-        position bottom
+        position top
         i3bar_command i3bar --transparency
         colors{
           separator #00000000

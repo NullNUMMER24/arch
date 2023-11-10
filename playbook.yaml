@@ -25,12 +25,17 @@
       register: i3blocks_status
       ignore_errors: yes
 
-    - name: Check and install i3lock-color package
+    - name: Check and install i3lock package
       pacman:
-        name: i3lock-color
+        name: i3lock
         state: present
       register: i3lock_color_status
       ignore_errors: yes
+
+    - name: Copy i3 config
+      ansible.builtin.copy:
+        src: "../files/i3/config"
+        dest: "/home/{{ username }}/.config/i3/config"
 
     - name: Copy i3 config1
       ansible.builtin.copy:
@@ -97,11 +102,6 @@
       user:
         name: "{{ username }}"
         shell: /usr/bin/zsh
-
-    - name: Install nitch
-      community.general.pacman:
-        name: nitch
-        state: present
 
     - name: install nerdfonts
       community.general.pacman:
