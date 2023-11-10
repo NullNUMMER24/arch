@@ -57,6 +57,20 @@
         name: rofi
         state: present
 
+    - name: Install picom
+      community.general.pacman:
+        name: picom
+        state: present
+
+    - name: Install flameshot
+      community.general.pacman:
+        name: flameshot
+        state: present
+
+    - name: Install blueman
+      community.general.pacman:
+        name: blueman
+        state: present
 #################################################################################
 # Terminal/Shell
 #################################################################################
@@ -78,6 +92,11 @@
       user:
         name: "{{ username }}"
         shell: /usr/bin/zsh
+
+    - name: Install nitch
+      community.general.pacman:
+        name: nitch
+        state: present
 
 #################################################################################
 # Notes
