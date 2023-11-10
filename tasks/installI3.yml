@@ -1,0 +1,35 @@
+- name: Check if i3 ist installed
+  pacman:
+    name: i3-wm
+  register: package_status
+  ignore_errors: yes
+
+- name: Install i3 if not present
+  pacman:
+    name: i3-wm
+    state: present
+  when: package_status|failed
+
+- name: Check if i3blocks ist installed
+  pacman:
+    name: i3blocks
+  register: package_status
+  ignore_errors: yes
+
+- name: Install i3blocks if not present
+  pacman:
+    name: i3blocks
+    state: present
+  when: package_status|failed
+
+- name: Check if i3lock-color ist installed
+  pacman:
+    name: i3lock-color
+  register: package_status
+  ignore_errors: yes
+
+- name: Install i3lock-color if not present
+  pacman:
+    name: i3lock-color
+    state: present
+  when: package_status|failed

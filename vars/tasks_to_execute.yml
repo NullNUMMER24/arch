@@ -1,5 +1,6 @@
 # System
 InstallArch: false
+InstallI3: true
 dotfiles: true
 fonts: true
 

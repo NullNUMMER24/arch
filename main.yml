@@ -2,6 +2,7 @@
 - name: "customize my arch"
   hosts: localhost
   become: true
+  become_user: nullnummer24
   tasks:
     - name: Include Variables
       include_vars:
@@ -10,6 +11,10 @@
     - name: Install Arch
       include_tasks: tasks/InstallArch.yml
       when: InstallArch
+
+    - name: Install i3
+      include_tasks: tasks/installI3.yml
+      when: InstallI3
 
     - name: dotfiles
       include_tasks: tasks/dotfiles.yml
