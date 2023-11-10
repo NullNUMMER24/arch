@@ -8,6 +8,10 @@
       include_vars:
         file: vars/tasks_to_execute.yml
 
+    - name: Update System
+      include_tasks: tasks/updateSystem.yml
+      when: Update
+
     - name: Install Arch
       include_tasks: tasks/InstallArch.yml
       when: InstallArch
