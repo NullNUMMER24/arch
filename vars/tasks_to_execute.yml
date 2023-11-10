@@ -1,5 +1,5 @@
 # System
-InstallArch: true
+InstallArch: false
 dotfiles: true
 fonts: true
 

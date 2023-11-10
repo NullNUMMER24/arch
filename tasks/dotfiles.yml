@@ -1,17 +1,17 @@
 - name: Install i3
-  community.general.pacman:
-    name:
-    - i3-wm
-    - i3blocks
-    - i3lock-color
-    state: present
-    executable: yay
-    extra_args: --builder ~/.cache/yay
+  ansible.builtin.shell:
+    cmd: yay -S i3-wm i3blocks i3lock-color
+
+- name: Create alacritty config folder
+  ansible.builtin.file:
+    path: "~/.config/alacritty"
+    state: directory
+    mode: '0755'
 
 - name: Copy i3 config
   ansible.builtin.copy:
     src: "../files/i3/config"
-    dest: "~.config/i3/config"
+    dest: "~/.config/i3/config"
 
 - name: Copy i3blocks
   ansible.builtin.copy:
