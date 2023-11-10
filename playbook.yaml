@@ -1,5 +1,5 @@
 ---
-- name: Configure i3 and related packages
+- name: Configure Arch
   hosts: localhost
   become: yes
 
@@ -47,6 +47,16 @@
         src: "../files/i3/i3blocks"
         dest: "/home/{{ username }}/.config/i3blocks"
 
+    - name: Install feh
+      community.general.pacman:
+        name: feh
+        state: present
+
+    - name: Install rofi
+      community.general.pacman:
+        name: rofi
+        state: present
+
 #################################################################################
 # Terminal/Shell
 #################################################################################
@@ -76,4 +86,14 @@
       community.general.pacman:
         name:
         - obsidian
+        state: present
+
+#################################################################################
+# Monitor
+#################################################################################
+    - name: install Arandr and Autorandr
+      community.general.pacman:
+        name:
+        - arandr
+        - autorandr
         state: present
