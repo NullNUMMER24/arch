@@ -1,0 +1,79 @@
+---
+- name: Configure i3 and related packages
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Include Variables
+      include_vars:
+        file: vars/sysvars.yml
+
+#################################################################################
+# i3
+#################################################################################
+    - name: Check and install i3-wm package
+      pacman:
+        name: i3-wm
+        state: present
+      register: i3_status
+      ignore_errors: yes
+
+    - name: Check and install i3blocks package
+      pacman:
+        name: i3blocks
+        state: present
+      register: i3blocks_status
+      ignore_errors: yes
+
+    - name: Check and install i3lock-color package
+      pacman:
+        name: i3lock-color
+        state: present
+      register: i3lock_color_status
+      ignore_errors: yes
+
+    - name: Copy i3 config
+      ansible.builtin.copy:
+        src: "../files/i3/config"
+        dest: "/home/{{ username }}/.config/i3/config"
+
+    - name: Copy wallpaper
+      ansible.builtin.copy:
+        src: "../files/i3/mountain.jpg"
+        dest: "/home/{{ username }}/.config/i3/"
+
+    - name: Copy i3blocks
+      ansible.builtin.copy:
+        src: "../files/i3/i3blocks"
+        dest: "/home/{{ username }}/.config/i3blocks"
+
+#################################################################################
+# Terminal/Shell
+#################################################################################
+    - name: Create alacritty config folder
+      ansible.builtin.file:
+        path: "/home/{{ username }}/.config/alacritty"
+        state: directory
+        mode: '0755'
+
+    - name: Install Zsh and change user's shell
+      community.general.pacman:
+        name:
+          - zsh
+          - zsh-completions
+          - zsh-syntax-highlighting
+        state: present
+
+    - name: Change "{{ username }}"'s shell to Zsh
+      user:
+        name: "{{ username }}"
+        shell: /usr/bin/zsh
+
+#################################################################################
+# Notes
+#################################################################################
+    - name: install Obsidian
+      community.general.pacman:
+        name:
+        - obsidian
+        state: present
