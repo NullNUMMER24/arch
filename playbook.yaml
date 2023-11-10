@@ -32,10 +32,15 @@
       register: i3lock_color_status
       ignore_errors: yes
 
-    - name: Copy i3 config
+    - name: Copy i3 config1
       ansible.builtin.copy:
-        src: "../files/i3/config"
-        dest: "/home/{{ username }}/.config/i3/config"
+        src: "../files/i3/config1"
+        dest: "/home/{{ username }}/.config/i3/config1"
+
+    - name: Copy i3 config2
+      ansible.builtin.copy:
+        src: "../files/i3/config2"
+        dest: "/home/{{ username }}/.config/i3/config2"
 
     - name: Copy wallpaper
       ansible.builtin.copy:
@@ -98,6 +103,18 @@
         name: nitch
         state: present
 
+    - name: install nerdfonts
+      community.general.pacman:
+        name:
+        - ttf-firacode
+        - ttf-firacode-nerd
+        state: present
+
+    - name: Install Neovim
+      community.general.pacman:
+        name: neovim
+        state: present
+
 #################################################################################
 # Notes
 #################################################################################
@@ -105,6 +122,41 @@
       community.general.pacman:
         name:
         - obsidian
+        state: present
+
+#################################################################################
+# Applications
+#################################################################################
+    - name: install Chromium
+      community.general.pacman:
+        name:
+        - chromium
+        state: present
+
+    - name: install spotify
+      community.general.pacman:
+        name:
+        - spotify
+        state: present
+    
+    - name: install games
+      community.general.pacman:
+        name:
+        - steam
+        - minecraft-launcher
+        - discord
+        state: present
+      when: games
+
+#################################################################################
+# Yubikey
+#################################################################################
+    - name: install Yubikey
+      community.general.pacman:
+        name:
+          - yubico-authenticator-bin
+          - yubikey-manager
+          - yubikey-personalization-gui
         state: present
 
 #################################################################################

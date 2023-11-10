@@ -263,6 +263,17 @@ bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
+#############################################
+# Change Config
+#############################################
+# Default
+ln -sf ~/.config/i3/config1 ~/.config/i3/config
+ln -sf ~/.config/i3/config2 ~/.config/i3/config_alt
+# Shortcuts
+bindsym $mod+Shift+a exec "ln -sf ~/.config/i3/config1 ~/.config/i3/config && i3-msg reload"
+bindsym $mod+Shift+y exec "ln -sf ~/.config/i3/config2 ~/.config/i3/config && i3-msg reload"
+
+
 ##########################################
 # configuration for workspace behaviour: #
 ##########################################
@@ -462,7 +473,7 @@ bindsym $mod+t exec rofi -show window \
 bar {
         status_command i3blocks -c /home/$USER/.config/i3blocks/i3blocks.conf
         font pango: Droid Sans Mono 11
-        position top
+        position bottom
         i3bar_command i3bar --transparency
         colors{
           separator #00000000

@@ -1,4 +1,4 @@
-- name: install nerdfonts
+- name: install yubikey
   community.general.pacman:
     name:
     - yubico-authenticator-bin
