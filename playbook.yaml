@@ -32,6 +32,12 @@
       register: i3lock_color_status
       ignore_errors: yes
 
+      # Copy the default config
+    - name: Copy i3 default config
+      ansible.builtin.copy:
+        src: "../files/i3/configHome"
+        dest: "/home/{{ username }}/.config/i3/config"
+
     - name: Copy i3 Home config
       ansible.builtin.copy:
         src: "../files/i3/configHome"
