@@ -1,0 +1,9 @@
+[Unit]
+Description=Set i3 default config
+
+[Service]
+Type=simple
+ExecStart="ln -sf ~/.config/i3/configHome ~/.config/i3/config && i3-msg reload"
+
+[Install]
+WantedBy=multi-user.target

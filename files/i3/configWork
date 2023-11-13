@@ -63,18 +63,6 @@ bindsym $mod+8    workspace  $ws8
 bindsym $mod+9    workspace  $ws9
 bindsym $mod+0    workspace  $ws10
 
-# switch to workspace with numpad keys
-bindcode $mod+87 workspace 1
-bindcode $mod+88 workspace 2
-bindcode $mod+89 workspace 3
-bindcode $mod+83 workspace 4
-bindcode $mod+84 workspace 5
-bindcode $mod+85 workspace 6
-bindcode $mod+79 workspace 7
-bindcode $mod+80 workspace 8
-bindcode $mod+81 workspace 9
-bindcode $mod+90 workspace 10
-
 # move focused container to workspace
 bindsym $mod+Shift+1    move container to workspace  $ws1
 bindsym $mod+Shift+2    move container to workspace  $ws2
@@ -104,10 +92,10 @@ set $ws1 "1: Terminal"
 set $ws2 "2: FireFox"
 set $ws3 "3: KeePaas + Yubikey"
 set $ws4 "4: Obsidian"
-set $ws5 "5: Chat"
+set $ws5 "5: Teams"
 set $ws6 "6: Explorer"
 set $ws7 "7: "
-set $ws8 "8:󰍳"
+set $ws8 "8:󰍳 Remmina"
 set $ws9 "9: Spotify"
 
 # resize window (you can also use the mouse for that):

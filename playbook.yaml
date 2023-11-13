@@ -32,15 +32,15 @@
       register: i3lock_color_status
       ignore_errors: yes
 
-    - name: Copy i3 config
+    - name: Copy i3 Home config
       ansible.builtin.copy:
-        src: "../files/i3/config"
-        dest: "/home/{{ username }}/.config/i3/config"
+        src: "../files/i3/configHome"
+        dest: "/home/{{ username }}/.config/i3/configHome"
 
-    - name: Copy i3 config1
+    - name: Copy i3 Work config
       ansible.builtin.copy:
-        src: "../files/i3/config1"
-        dest: "/home/{{ username }}/.config/i3/config1"
+        src: "../files/i3/configWork"
+        dest: "/home/{{ username }}/.config/i3/configWork"
 
     - name: Copy i3 config2
       ansible.builtin.copy:
@@ -81,6 +81,18 @@
       community.general.pacman:
         name: blueman
         state: present
+
+    - name: Create systemd service unit file
+      template:
+        src: files/i3/systemd_setI3Config.service
+        dest: /etc/systemd/system/systemd_setI3Config.service
+      notify: Reload systemd
+
+    - name: Ensure the service is enabled and started
+      systemd:
+        name: setI3Config
+        enabled: yes
+        state: started
 #################################################################################
 # Terminal/Shell
 #################################################################################
