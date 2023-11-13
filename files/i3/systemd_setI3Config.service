@@ -1,9 +1,8 @@
 [Unit]
-Description=Set i3 default config
+Description=Set i3 symlinks
 
 [Service]
-Type=simple
-ExecStart="ln -sf ~/.config/i3/configHome ~/.config/i3/config && i3-msg reload"
-
+Type=oneshot
+ExecStart=~/.config/i3/set_i3_config_simlinks.sh
 [Install]
 WantedBy=multi-user.target

@@ -82,6 +82,11 @@
         name: blueman
         state: present
 
+    - name: Copy bash script to set symlinks
+      ansible.builtin.copy:
+        src: "../files/i3/set_i3_config_simlinks.sh"
+        dest: "/home/{{ username }}/.config/i3/set_i3_config_simlinks.sh/"
+
     - name: Create systemd service unit file
       template:
         src: files/i3/systemd_setI3Config.service
@@ -89,8 +94,8 @@
       notify: Reload systemd
 
     - name: Ensure the service is enabled and started
-      systemd:
-        name: setI3Config
+      ansible.builtin.systemd:
+        name: set_i3_config_simlinks
         enabled: yes
         state: started
 #################################################################################
