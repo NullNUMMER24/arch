@@ -145,11 +145,11 @@
         - chromium
         state: present
 
-    - name: install spotify
-      community.general.pacman:
-        name:
-        - spotify
-        state: present
+    # - name: install spotify
+    #   community.general.pacman:
+    #     name:
+    #     - spotify
+    #     state: present
     
     - name: install games
       community.general.pacman:
@@ -163,13 +163,13 @@
 #################################################################################
 # Yubikey
 #################################################################################
-    - name: install Yubikey
-      community.general.pacman:
-        name:
-          - yubico-authenticator-bin
-          - yubikey-manager
-          - yubikey-personalization-gui
-        state: present
+    # - name: install Yubikey
+    #   community.general.pacman:
+    #     name:
+    #       - yubico-authenticator-bin
+    #       - yubikey-manager
+    #       - yubikey-personalization-gui
+    #     state: present
 
 #################################################################################
 # Monitor

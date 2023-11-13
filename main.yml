@@ -8,46 +8,18 @@
       include_vars:
         file: vars/tasks_to_execute.yml
 
-    - name: Update System
-      include_tasks: tasks/updateSystem.yml
-      when: Update
+    - name: EndevourOS
+      include_tasks: tasks/eos.yml
+      when: 
 
-    - name: Install Arch
-      include_tasks: tasks/InstallArch.yml
-      when: InstallArch
+    - name: Ubuntu
+      include_tasks: tasks/ubuntu.yml
+      when: 
 
-    - name: Install i3
-      include_tasks: tasks/installI3.yml
-      when: InstallI3
+    - name: Debian
+      include_tasks: tasks/debian.yml
+      when: 
 
-    - name: dotfiles
-      include_tasks: tasks/dotfiles.yml
-      when: dotfiles
-
-    - name: fonts
-      include_tasks: tasks/fonts.yml
-      when: fonts
-
-    - name: zsh
-      include_tasks: tasks/zsh.yml
-      when: zsh
-
-    - name: alacritty
-      include_tasks: tasks/alacritty.yml
-      when: alacritty
-    
-    - name: obsidian
-      include_tasks: tasks/obsidian.yml
-      when: obsidian
-
-    - name: chromium
-      include_tasks: tasks/chromium.yml
-      when: chromium
-
-    - name: yubikey
-      include_tasks: tasks/yubikey.yml
-      when: yubikey
-
-    - name: spotify
-      include_tasks: tasks/spotify.yml
-      when: spotify
+    - name: Basic Arch
+      include_tasks: tasks/arch.yml
+      when: 

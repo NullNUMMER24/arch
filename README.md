@@ -1,6 +1,5 @@
 # arch
-
-
+This is a Repository to configure a linux environment. 
 # Community General Pacman Module
 ## Link to documentation
 https://docs.ansible.com/ansible/latest/collections/community/general/pacman_module.html
@@ -16,6 +15,29 @@ ansible-galaxy collection install community.general
 - linux --> This installs the Linux kernel.
 - linux-firmware --> This provides firmware files for various hardware devices.
 - networkmanager --> This package is a convenient way to manager your network connections.
+
+# Software
+## Notes
+- Obsidian
+## Browser
+- Chromium
+## Bluetooth
+- blueman
+## Monitors
+- arandr
+- autorandr
+## Terminal
+- Alacritty
+## Screenshot
+- Flameshot
+## Desktop Environment
+- i3
+## Editor
+- Neovim
+## Yubikey
+- yubico-authenticator-bin
+- yubikey-manager
+- yubikey-personalization-gui
 
 
 # Inspired by
