@@ -255,10 +255,9 @@ bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 # Change Config
 #############################################
 # Shortcuts
-bindsym $mod+Shift+a+0 exec "\cp -f ~/.config/i3/configHome ~/.config/i3/config && i3-msg reload"
-bindsym $mod+Shift+a+1 exec "\cp -f ~/.config/i3/configWork ~/.config/i3/config && i3-msg reload"
+bindsym $mod+Shift+a exec "\cp -f ~/.config/i3/configHome ~/.config/i3/config && i3-msg reload"
+bindsym $mod+Shift+y exec "\cp -f ~/.config/i3/configWork ~/.config/i3/config && i3-msg reload"
 bindsym $mod+Shift+a+2 exec "\cp -f ~/.config/i3/config2 ~/.config/i3/config && i3-msg reload"
-
 
 ##########################################
 # configuration for workspace behaviour: #
