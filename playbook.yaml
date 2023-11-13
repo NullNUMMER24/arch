@@ -86,17 +86,12 @@
       ansible.builtin.copy:
         src: "../files/i3/set_i3_config_simlinks.sh"
         dest: "/home/{{ username }}/.config/i3/set_i3_config_simlinks.sh/"
+        mode: '0775'
 
-    - name: Create systemd service unit file
-      ansible.builtin.copy:
-        src: files/i3/systemd_setI3Config.service
-        dest: /etc/systemd/system/systemd_setI3Config.service
-
-    - name: Ensure the service is enabled and started
-      ansible.builtin.systemd:
-        name: set_i3_config_simlinks
-        enabled: yes
-        state: started
+    - name: Add symlink script to .bashrc
+      ansible.builtin.lineinfile:
+        path: "/home/{{ username }}/.bashrc"
+        line: "/home/{{ username }}/i3/set_i3_config_symlinks.sh"
 #################################################################################
 # Terminal/Shell
 #################################################################################
