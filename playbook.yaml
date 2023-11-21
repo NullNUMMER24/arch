@@ -114,6 +114,10 @@
         name: "{{ username }}"
         shell: /usr/bin/zsh
 
+    - name: install firecode fonts
+      ansible.builtin.shell:
+        cmd: sudo -u {{ username }} yay -S --noconfirm ttf-firacode ttf-firacode-nerd
+
     - name: Install Neovim
       community.general.pacman:
         name: neovim
@@ -137,6 +141,22 @@
         - chromium
         state: present
 
+    - name: install Spotify
+      ansible.builtin.shell:
+        cmd: sudo -u {{ username }} yay -S --noconfirm spotify
+
+    - name: Install Discord
+      ansible.builtin.shell:
+        cmd: sudo -u {{ username }} yay -S --noconfirm discord-electron
+
+    - name: Install Minecraft
+      ansible.builtin.shell:
+        cmd: sudo -u {{ username }} yay -S --noconfirm minecraft-launcher
+
+    - name: Install Steam
+      ansible.builtin.shell:
+        cmd: sudo -u {{ username }} yay -S --noconfirm steam
+
 #################################################################################
 # Yubikey
 #################################################################################
@@ -155,8 +175,32 @@
         state: present
 
 #################################################################################
-# Start yaybook
+# Virt-Manager
 #################################################################################
-    - name: start yaybook
-      ansible.builtin.shell:
-        cmd: sudo -u {{ username }} ansible-playbook yaybook.yaml
+    - name: Install KVM packages
+      community.general.pacman:
+        name:
+        - qemu
+        - virt-manager
+        - virt-viewer
+        - dnsmasq
+        - vde2
+        - bridge-utils
+        - openbsd-netcat
+        - dmidecode
+        state: present
+      when: vm
+
+    - name: Install libguestfs
+      community.general.pacman:
+        name:
+        - libguestfs
+        state: present
+      when: vm
+
+    - name: enable libvirt service
+      ansible.builtin.service:
+        name: libvirtd.service
+        state: started
+        enabled: yes
+      when: vm
