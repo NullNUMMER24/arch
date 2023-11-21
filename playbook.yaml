@@ -128,9 +128,29 @@
 #################################################################################
     - name: install Obsidian
       community.general.pacman:
-        name:
-        - obsidian
+        name: obsidian
         state: present
+
+#################################################################################
+# Thunderbird
+#################################################################################
+    - name: install Thunderbird
+      community.general.pacman:
+        name: thunderbird
+        state: present
+
+    - name: install German language pack for Thunderbird
+      community.general.pacman:
+        name: thunderbird-i18-de
+        state: present
+
+#################################################################################
+# Remote Connection
+#################################################################################
+     - name: install Remmina (RDP)
+      community.general.pacman:
+        name: remmina
+        state: present 
 
 #################################################################################
 # Applications
@@ -174,6 +194,14 @@
         name:
         - arandr
         - autorandr
+        state: present
+
+#################################################################################
+# Storage
+#################################################################################
+    - name: install nextcloud-client
+      community.general.pacman:
+        name: nextcloud-client
         state: present
 
 #################################################################################
