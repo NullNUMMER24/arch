@@ -95,12 +95,17 @@
 #################################################################################
 # Add User to sudoers
 #################################################################################
+    - name: Generate password hash for ansible_user
+      ansible.builtin.set_fact:
+        ansible_user_password_hash: "{{ lookup('password_hash', ansible_user_password) }}"
+
     - name: Create Yay User
       user:
         name: yay_user
         state: present
         groups: wheel
         append: yes
+        password: "{{ ansible_user_password_hash }}"
         createhome: yes
         shell: /bin/bash
 
@@ -134,7 +139,7 @@
 
     - name: install firecode fonts
       ansible.builtin.shell:
-        cmd: sudo -u {{ username }} yay -S --noconfirm ttf-firacode ttf-firacode-nerd
+        cmd: sudo -u yay_user yay -S --noconfirm ttf-firacode ttf-firacode-nerd
 
     - name: Install Neovim
       community.general.pacman:
@@ -197,7 +202,7 @@
 #################################################################################
     - name: install Yubikey
       ansible.builtin.shell:
-        cmd: sudo -u yay_user /usr/bin/yay -S --noconfirm yubico-authenticator-bin yubikey-manager yubikey-personalization-gui
+        cmd: sudo -u yay_user /usr/bin/yay -S --noconfirm yubico-authenticator-bin yubikey-manager yubikey-personalization-gui --sudoloops
 
 #################################################################################
 # Monitor
