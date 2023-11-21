@@ -152,10 +152,12 @@
     - name: Install Minecraft
       ansible.builtin.shell:
         cmd: sudo -u {{ username }} yay -S --noconfirm minecraft-launcher
+        when: games
 
     - name: Install Steam
       ansible.builtin.shell:
         cmd: sudo -u {{ username }} yay -S --noconfirm steam
+        when: games
 
 #################################################################################
 # Yubikey
