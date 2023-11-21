@@ -2,7 +2,6 @@
 - name: Configure Arch
   hosts: localhost
   become: yes
-
   tasks:
     - name: Include Variables
       include_vars:
@@ -115,16 +114,6 @@
         name: "{{ username }}"
         shell: /usr/bin/zsh
 
-    - name: install nerdfonts
-      community.general.pacman:
-        name:
-        - ttf-firacode
-        - ttf-firacode-nerd
-        state: present
-        executable: yay
-        extra_args: --builder /var/cache/yay
-      become_user: {{ username }}
-
     - name: Install Neovim
       community.general.pacman:
         name: neovim
@@ -148,21 +137,6 @@
         - chromium
         state: present
 
-    # - name: install spotify
-    #   community.general.pacman:
-    #     name:
-    #     - spotify
-    #     state: present
-    
-    - name: install games
-      community.general.pacman:
-        name:
-        - steam
-        - minecraft-launcher
-        - discord
-        state: present
-      when: games
-
 #################################################################################
 # Yubikey
 #################################################################################
@@ -183,3 +157,12 @@
         - arandr
         - autorandr
         state: present
+
+#################################################################################
+# Start yaybook
+#################################################################################
+    - name: start yaybook
+      ansible.builtin.shell:
+        cmd: ansible-playbook yaybook.yaml
+        args:
+          executeable: /bin/bash

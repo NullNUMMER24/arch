@@ -1,0 +1,44 @@
+---
+- name: Yay Installs for my arch
+  hosts: localhost
+  tasks:
+    - name: Include Variables
+      include_vars:
+        file: vars/sysvars.yml
+
+    - name: install nerdfonts
+      community.general.pacman:
+        name:
+        - ttf-firacode
+        - ttf-firacode-nerd
+        state: present
+        executable: yay
+        extra_args: --builder /var/cache/yay
+
+    - name: install Spotify
+      community.general.pacman:
+        name: spotify
+        state: present
+        executable: yay
+        extra_args: --builder /var/cache/yay
+
+    - name: install games
+      community.general.pacman:
+        name:
+        - steam
+        - minecraft-launcher
+        - discord
+        state: present
+        executable: yay
+        extra_args: --builder /var/cache/yay
+      when: games
+
+    - name: install Yubikey
+      community.general.pacman:
+        name:
+          - yubico-authenticator-bin
+          - yubikey-manager
+          - yubikey-personalization-gui
+        state: present
+        executable: yay
+        extra_args: --builder /var/cache/yay
