@@ -163,6 +163,6 @@
 #################################################################################
     - name: start yaybook
       ansible.builtin.shell:
-        cmd: ansible-playbook yaybook.yaml
+        cmd: sudo -u {{ username }} ansible-playbook yaybook.yaml
         args:
           executeable: /bin/bash
