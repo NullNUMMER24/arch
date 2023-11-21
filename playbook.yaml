@@ -140,13 +140,9 @@
 #################################################################################
 # Yubikey
 #################################################################################
-    # - name: install Yubikey
-    #   community.general.pacman:
-    #     name:
-    #       - yubico-authenticator-bin
-    #       - yubikey-manager
-    #       - yubikey-personalization-gui
-    #     state: present
+    - name: install Yubikey
+      ansible.builtin.shell:
+        cmd: sudo -u {{ username }} yay -S --noconfirm yubico-authenticator-bin yubikey-manager yubikey-personalization-gui
 
 #################################################################################
 # Monitor
