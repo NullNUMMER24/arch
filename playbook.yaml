@@ -147,7 +147,7 @@
 #################################################################################
 # Remote Connection
 #################################################################################
-     - name: install Remmina (RDP)
+    - name: install Remmina (RDP)
       community.general.pacman:
         name: remmina
         state: present 
