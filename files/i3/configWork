@@ -1,6 +1,6 @@
-#######################
-# config starts here: #
-#######################
+############################
+# work config starts here: #
+############################
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -17,14 +17,6 @@ set $mod Mod4
 
 # default i3 tiling mode:
 workspace_layout default
-
-# i3 stacking layout:
-# Each window will be fullscreen and tabbed top to bottom.
-#workspace_layout stacking
-
-# i3 tabbed layout:
-# Each new window will open fullscreen as a tab (left to right)
-#workspace_layout tabbed
 
 ##############################
 # extra options for windows: #
@@ -75,18 +67,6 @@ bindsym $mod+Shift+8    move container to workspace  $ws8
 bindsym $mod+Shift+9    move container to workspace  $ws9
 bindsym $mod+Shift+0    move container to workspace  $ws10
 
-# move focused container to workspace with numpad keys
-bindcode $mod+Shift+87 	 move container to workspace  $ws1
-bindcode $mod+Shift+88 	 move container to workspace  $ws2
-bindcode $mod+Shift+89 	 move container to workspace  $ws3
-bindcode $mod+Shift+83 	 move container to workspace  $ws4
-bindcode $mod+Shift+84 	 move container to workspace  $ws5
-bindcode $mod+Shift+85 	 move container to workspace  $ws6
-bindcode $mod+Shift+79 	 move container to workspace  $ws7
-bindcode $mod+Shift+80 	 move container to workspace  $ws8
-bindcode $mod+Shift+81 	 move container to workspace  $ws9
-bindcode $mod+Shift+90 	 move container to workspace  $ws10
-
 # Name of the workspaces
 set $ws1 "1: Terminal"
 set $ws2 "2: FireFox"
@@ -94,34 +74,9 @@ set $ws3 "3: KeePaas + Yubikey"
 set $ws4 "4: Obsidian"
 set $ws5 "5: Teams"
 set $ws6 "6: Explorer"
-set $ws7 "7: "
-set $ws8 "8:󰍳 Remmina"
+set $ws7 "7:󰢹 Remmina"
+set $ws8 "8: "
 set $ws9 "9: Spotify"
-
-# resize window (you can also use the mouse for that):
-#mode "resize" {
-# These bindings trigger as soon as you enter the resize mode
-# Pressing left will shrink the window's width.
-# Pressing right will grow the window's width.
-# Pressing up will shrink the window's height.
-# Pressing down will grow the window's height.
-#        bindsym j resize shrink width 10 px or 10 ppt
-#        bindsym k resize grow height 10 px or 10 ppt
-#        bindsym l resize shrink height 10 px or 10 ppt
-#        bindsym ntilde resize grow width 10 px or 10 ppt
-
-# same bindings, but for the arrow keys
-#	bindsym Left resize shrink width 10 px or 10 ppt
-#        bindsym Down resize grow height 10 px or 10 ppt
-#        bindsym Up resize shrink height 10 px or 10 ppt
-#        bindsym Right resize grow width 10 px or 10 ppt
-
-# back to normal: Enter or Escape
-#	bindsym Return mode "default"
-#        bindsym Escape mode "default"
-#}
-
-#bindsym $mod+r mode "resize"
 
 ######################################
 # Montitor configuration             #
@@ -267,7 +222,7 @@ bindsym $mod+Shift+a+2 exec "\cp -f ~/.config/i3/config2 ~/.config/i3/config && 
 # you can get from xrandr command
 #workspace $ws1 output VGA-0
 #workspace $ws2 output VGA-0
-#workspace $ws3 output HDMI-0
+#workspace $ws3 output HDMI-0mountain
 #workspace $ws4 output HDMI-0
 #workspace $ws5 output HDMI-0
 
@@ -343,7 +298,7 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec_always feh --bg-fill /home/$(whoami)/git/wallpaper/mountain.jpg
+exec_always feh --bg-fill /home/$(whoami)/git/wallpaper/work.jpg
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -397,13 +352,6 @@ for_window [window_role="About"] floating enable
 
 # set border of floating window
 for_window [class="urxvt"] border pixel 1
-
-# set size of floating window
-#for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480 #to set size of file choose dialog
-#for_window [class=".*"] resize set 640 480 #to change size of all floating windows 
-
-# set position of floating window
-#for_window [class=".*"] move position center
 
 ######################################
 # color settings for bar and windows #

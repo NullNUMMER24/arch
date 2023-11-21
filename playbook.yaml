@@ -53,10 +53,15 @@
         src: "../files/i3/config2"
         dest: "/home/{{ username }}/.config/i3/config2"
 
-    - name: Copy wallpaper
+    - name: Copy home wallpaper
       ansible.builtin.copy:
-        src: "../files/i3/mountain.jpg"
-        dest: "/home/{{ username }}/.config/i3/wallpapers/"
+        src: "../files/i3/home.jpg"
+        dest: "/home/{{ username }}/.config/i3/wallpapers/home.jpg"
+
+    - name: Copy work wallpaper
+      ansible.builtin.copy:
+        src: "../files/i3/work.jpg"
+        dest: "/home/{{ username }}/.config/i3/wallpapers/work.jpg"
 
     - name: Copy i3blocks
       ansible.builtin.copy:
