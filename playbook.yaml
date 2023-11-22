@@ -52,9 +52,9 @@
         src: "../files/i3/config2"
         dest: "/home/{{ username }}/.config/i3/config2"
 
-    - name: Create wallpaper folder
+    - name: Create wallpapers folder
       ansible.builtin.file:
-        path: "/home/{{ username }}/.config/i3/wallpapers
+        path: "/home/{{ username }}/.config/i3/wallpapers"
         state: directory
 
     - name: Copy home wallpaper
