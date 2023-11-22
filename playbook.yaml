@@ -52,6 +52,11 @@
         src: "../files/i3/config2"
         dest: "/home/{{ username }}/.config/i3/config2"
 
+    - name: Create wallpaper folder
+      ansible.builtin.file:
+        path: "/home/{{ username }}/.config/i3/wallpapers
+        state: directory
+
     - name: Copy home wallpaper
       ansible.builtin.copy:
         src: "../files/i3/home.jpg"
@@ -91,29 +96,6 @@
       community.general.pacman:
         name: blueman
         state: present
-
-#################################################################################
-# Add User to sudoers
-#################################################################################
-    - name: Generate password hash for ansible_user
-      ansible.builtin.set_fact:
-        ansible_user_password_hash: "{{ lookup('password_hash', ansible_user_password) }}"
-
-    - name: Create Yay User
-      user:
-        name: yay_user
-        state: present
-        groups: wheel
-        append: yes
-        password: "{{ ansible_user_password_hash }}"
-        createhome: yes
-        shell: /bin/bash
-
-    - name: Add yay_user to sudoers
-      lineinfile:
-        path: /etc/sudoers
-        line: "yay_user ALL=(ALL) NOPASSWD: /usr/bin/yay"
-        validate: 'visudo -cf %s'
 
 #################################################################################
 # Terminal/Shell
