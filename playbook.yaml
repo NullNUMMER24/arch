@@ -121,7 +121,11 @@
 
     - name: install firecode fonts
       ansible.builtin.shell:
-        cmd: sudo -u yay_user yay -S --noconfirm ttf-firacode ttf-firacode-nerd
+        cmd: sudo -u {{ username }} yay -S --noconfirm ttf-firacode ttf-firacode-nerd
+
+    - name: install firecode fonts
+      ansible.builtin.shell:
+        cmd: sudo -u {{ username }} yay -S --noconfirm ttf-firacode ttf-firacode-nerd
 
     - name: Install Neovim
       community.general.pacman:
