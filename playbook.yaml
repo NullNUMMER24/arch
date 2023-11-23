@@ -173,9 +173,10 @@
         - chromium
         state: present
 
-    - name: install Spotify
-      ansible.builtin.shell:
-        cmd: sudo -u yay_user /usr/bin/yay -S --noconfirm spotify
+    - name: Include Spotify tasks
+      ansible.builtin.include_tasks:
+        file: tasks/spotify.yml
+      become: no
 
     - name: Install Discord
       ansible.builtin.shell:
