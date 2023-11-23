@@ -1,4 +1,5 @@
 ---
+become: no
 - name: install spotify
   community.general.pacman:
     name: spotify
