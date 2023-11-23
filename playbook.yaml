@@ -126,14 +126,10 @@
       user:
         name: "{{ username }}"
         shell: /usr/bin/zsh
-
-    - name: install firecode fonts
-      ansible.builtin.shell:
-        cmd: echo "{{ password }}" | sudo -u {{ username }} yay -S --noconfirm ttf-firacode ttf-firacode-nerd
-
-    - name: install firecode fonts
-      ansible.builtin.shell:
-        cmd: sudo -u {{ username }} yay -S --noconfirm ttf-firacode ttf-firacode-nerd
+      
+    - name: Include fonts tasks
+      ansible.builtin.include_tasks:
+        file: tasks/fonts.yml
 
     - name: Install Neovim
       community.general.pacman:
@@ -173,31 +169,32 @@
         - chromium
         state: present
 
-    - name: Include Spotify tasks
+    - name: Include Spotify task
       ansible.builtin.include_tasks:
         file: tasks/spotify.yml
-      become: no
 
-    - name: Install Discord
-      ansible.builtin.shell:
-        cmd: sudo -u yay_user /usr/bin/yay -S --noconfirm discord-electron
+    - name: Include Discord task
+      ansible.builtin.include_tasks:
+        file: tasks/discord.yml
 
-    - name: Install Minecraft
-      ansible.builtin.shell:
-        cmd: sudo -u yay_user /usr/bin/yay -S --noconfirm minecraft-launcher
-      when: games
+    - name: Include Minecraft task
+      ansible.builtin.include_tasks:
+        file: tasks/minecraft.yml
+      when: minecraft
 
-    - name: Install Steam
-      ansible.builtin.shell:
-        cmd: sudo -u yay_user /usr/bin/yay -S --noconfirm steam
-      when: games
+    - name: Include Steam task
+      ansible.builtin.include_tasks:
+        file: tasks/steam.yml
+      when: steam
 
 #################################################################################
 # Yubikey
 #################################################################################
-    - name: install Yubikey
-      ansible.builtin.shell:
-        cmd: sudo -u yay_user /usr/bin/yay -S --noconfirm yubico-authenticator-bin yubikey-manager yubikey-personalization-gui --sudoloops
+    - name: Include Yubkey task
+      ansible.builtin.include_tasks:
+        file: tasks/yubikey.yml
+      when: minecraft
+
 
 #################################################################################
 # Monitor

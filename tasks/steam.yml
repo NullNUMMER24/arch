@@ -1,8 +1,7 @@
-- name: install nerdfonts
+---
+- name: install steam
   community.general.pacman:
-    name:
-    - ttf-firacode
-    - ttf-firacode-nerd
+    name: steam
     state: present
     executable: yay
     extra_args: --builder /var/cache/yay

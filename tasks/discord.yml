@@ -1,8 +1,7 @@
-- name: install nerdfonts
+---
+- name: install Discord
   community.general.pacman:
-    name:
-    - ttf-firacode
-    - ttf-firacode-nerd
+    name: discord
     state: present
     executable: yay
     extra_args: --builder /var/cache/yay
