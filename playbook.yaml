@@ -8,6 +8,14 @@
         file: vars/sysvars.yml
 
 #################################################################################
+# Update system and mirrors
+#################################################################################
+    - name: Update system and mirrors
+      community.general.pacman:
+        update_cache: true
+        upgrade: true
+
+#################################################################################
 # i3
 #################################################################################
     - name: Check and install i3-wm package
@@ -121,7 +129,7 @@
 
     - name: install firecode fonts
       ansible.builtin.shell:
-        cmd: sudo -u {{ username }} yay -S --noconfirm ttf-firacode ttf-firacode-nerd
+        cmd: echo "{{ password }}" | sudo -u {{ username }} yay -S --noconfirm ttf-firacode ttf-firacode-nerd
 
     - name: install firecode fonts
       ansible.builtin.shell:
