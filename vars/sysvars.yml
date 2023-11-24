@@ -1,6 +1,6 @@
 # System
 update: true
-InstallI3: false
+i3: false
 dotfiles: true
 fonts: true
 

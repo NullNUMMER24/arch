@@ -105,8 +105,8 @@ bindsym $mod+b exec /usr/bin/blueman-manager
 bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
 
 # Lock the system
-#bindsym $mod+x exec /home/$USER/.config/i3/scripts/lock
-bindsym $mod+x exec i3lock
+bindsym $mod+x exec /home/$USER/.config/i3/scripts/lock
+#bindsym $mod+x exec i3lock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

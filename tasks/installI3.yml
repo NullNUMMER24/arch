@@ -1,35 +1,88 @@
-- name: Check if i3 ist installed
-  pacman:
-    name: i3-wm
-  register: package_status
-  ignore_errors: yes
+---
+- name: install i3-wm packages
+      community.general.pacman:
+        name: 
+        - i3-wm
+        - xorg
+        - i3status
+        - dmenu
+        - terminator
+        state: present
 
-- name: Install i3 if not present
-  pacman:
-    name: i3-wm
-    state: present
-  when: package_status|failed
+    - name: Check and install i3blocks package
+      community.general.pacman:
+        name: i3blocks
+        state: present
 
-- name: Check if i3blocks ist installed
-  pacman:
-    name: i3blocks
-  register: package_status
-  ignore_errors: yes
+    - name: Check and install i3blocks package
+      community.general.pacman:
+        name: i3blocks
+        state: absent
 
-- name: Install i3blocks if not present
-  pacman:
-    name: i3blocks
-    state: present
-  when: package_status|failed
+    - name: Check and install i3lock-color package
+      community.general.pacman:
+        name: i3lock-color
+        state: present
+        executable: yay
+        extra_args: --builder /var/cache/yay
+      become: no
 
-- name: Check if i3lock-color ist installed
-  pacman:
-    name: i3lock-color
-  register: package_status
-  ignore_errors: yes
+    - name: Copy i3 default config
+      ansible.builtin.copy:
+        src: "../files/i3/configHome"
+        dest: "/home/{{ username }}/.config/i3/config"
 
-- name: Install i3lock-color if not present
-  pacman:
-    name: i3lock-color
-    state: present
-  when: package_status|failed
+    - name: Copy i3 Home config
+      ansible.builtin.copy:
+        src: "../files/i3/configHome"
+        dest: "/home/{{ username }}/.config/i3/configHome"
+
+    - name: Copy i3 Work config
+      ansible.builtin.copy:
+        src: "../files/i3/configWork"
+        dest: "/home/{{ username }}/.config/i3/configWork"
+
+    - name: Copy i3 config2
+      ansible.builtin.copy:
+        src: "../files/i3/config2"
+        dest: "/home/{{ username }}/.config/i3/config2"
+
+    - name: Create wallpapers folder
+      ansible.builtin.file:
+        path: "/home/{{ username }}/.config/i3/wallpapers"
+        state: directory
+
+    - name: Copy home wallpaper
+      ansible.builtin.copy:
+        src: "../files/i3/home.jpg"
+        dest: "/home/{{ username }}/.config/i3/wallpapers/home.jpg"
+
+    - name: Copy work wallpaper
+      ansible.builtin.copy:
+        src: "../files/i3/work.jpg"
+        dest: "/home/{{ username }}/.config/i3/wallpapers/work.jpg"
+
+    - name: Copy i3blocks
+      ansible.builtin.copy:
+        src: "../files/i3/i3blocks"
+        dest: "/home/{{ username }}/.config/i3blocks"
+
+    - name: Copy i3lock script
+      ansible.builtin.copy:
+        src: "../files/i3/scripts/lock"
+        dest: "/home/{{ username }}/.config/i3/scripts/"
+
+    - name: Install feh
+      community.general.pacman:
+        name: feh
+        state: present
+
+    - name: Install rofi
+      community.general.pacman:
+        name: rofi
+        state: present
+
+    - name: Install picom
+      community.general.pacman:
+        name: picom
+        state: present

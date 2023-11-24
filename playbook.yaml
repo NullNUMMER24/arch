@@ -8,7 +8,7 @@
         file: vars/sysvars.yml
 
 #################################################################################
-# Update system and mirrors
+# Update system and mirrors and install yay
 #################################################################################
     - name: Update system and mirrors
       community.general.pacman:
@@ -16,85 +16,18 @@
         upgrade: true
       when: update
 
+    - name: Install yay
+      community.general.pacman:
+        name: yay
+        state: present
+
 #################################################################################
 # i3
 #################################################################################
-    - name: Check and install i3-wm package
-      pacman:
-        name: i3-wm
-        state: present
-      register: i3_status
-      ignore_errors: yes
-
-    - name: Check and install i3blocks package
-      pacman:
-        name: i3blocks
-        state: present
-      register: i3blocks_status
-      ignore_errors: yes
-
-    - name: Check and install i3lock package
-      pacman:
-        name: i3lock
-        state: present
-      register: i3lock_color_status
-      ignore_errors: yes
-
-      # Copy the default config
-    - name: Copy i3 default config
-      ansible.builtin.copy:
-        src: "../files/i3/configHome"
-        dest: "/home/{{ username }}/.config/i3/config"
-
-    - name: Copy i3 Home config
-      ansible.builtin.copy:
-        src: "../files/i3/configHome"
-        dest: "/home/{{ username }}/.config/i3/configHome"
-
-    - name: Copy i3 Work config
-      ansible.builtin.copy:
-        src: "../files/i3/configWork"
-        dest: "/home/{{ username }}/.config/i3/configWork"
-
-    - name: Copy i3 config2
-      ansible.builtin.copy:
-        src: "../files/i3/config2"
-        dest: "/home/{{ username }}/.config/i3/config2"
-
-    - name: Create wallpapers folder
-      ansible.builtin.file:
-        path: "/home/{{ username }}/.config/i3/wallpapers"
-        state: directory
-
-    - name: Copy home wallpaper
-      ansible.builtin.copy:
-        src: "../files/i3/home.jpg"
-        dest: "/home/{{ username }}/.config/i3/wallpapers/home.jpg"
-
-    - name: Copy work wallpaper
-      ansible.builtin.copy:
-        src: "../files/i3/work.jpg"
-        dest: "/home/{{ username }}/.config/i3/wallpapers/work.jpg"
-
-    - name: Copy i3blocks
-      ansible.builtin.copy:
-        src: "../files/i3/i3blocks"
-        dest: "/home/{{ username }}/.config/i3blocks"
-
-    - name: Install feh
-      community.general.pacman:
-        name: feh
-        state: present
-
-    - name: Install rofi
-      community.general.pacman:
-        name: rofi
-        state: present
-
-    - name: Install picom
-      community.general.pacman:
-        name: picom
-        state: present
+    - name: Include i3 tasks
+      ansible.builtin.include_tasks:
+        file: tasks/i3.yml
+      when: i3
 
     - name: Install flameshot
       community.general.pacman:
@@ -109,11 +42,10 @@
 #################################################################################
 # Terminal/Shell
 #################################################################################
-    - name: Create alacritty config folder
-      ansible.builtin.file:
-        path: "/home/{{ username }}/.config/alacritty"
-        state: directory
-        mode: '0755'
+    - name: Include Alacritty tasks
+      ansible.builtin.include_tasks:
+        file: tasks/alacritty.yml
+      when: alacritty
 
     - name: Include zsh tasks
       ansible.builtin.include_tasks:
