@@ -1,3 +1,4 @@
+---
 - name: install alacritty
   community.general.pacman:
     name:
@@ -5,7 +6,7 @@
     state: present
 
 - name: Create alacritty config folder
-  ansible.builtin.file
+  ansible.builtin.file:
     path: "~/.config/alacritty"
     state: directory
     mode: '0755'
