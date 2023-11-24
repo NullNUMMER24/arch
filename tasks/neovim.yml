@@ -1,0 +1,13 @@
+---
+- name: Install Neovim
+  community.general.pacman:
+    name: neovim
+    state: present
+
+- name: install nvchad
+  community.general.pacman:
+    name: nvchad-git
+    state: present
+    executable: yay
+    extra_args: --builder /var/cache/yay
+  become: no

@@ -1,6 +1,5 @@
 # System
-Update: true
-InstallArch: false
+update: true
 InstallI3: false
 dotfiles: true
 fonts: true
@@ -12,6 +11,12 @@ alacritty: true
 # Notes
 obsidian: true
 
+# Communication
+mail: true
+
+# RDP
+remmina: true
+
 # Browser
 chromium: true
 
@@ -20,6 +25,10 @@ yubikey: true
 
 # Music
 spotify: true
+
+# Editors
+neovim: true
+vscode: true
 
 # Games
 minecraft: false

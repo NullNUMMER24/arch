@@ -23,6 +23,8 @@ ansible-galaxy collection install community.general
 - Chromium
 ## Bluetooth
 - blueman
+## Email
+- Thunderbird
 ## Monitors
 - arandr
 - autorandr
@@ -34,6 +36,8 @@ ansible-galaxy collection install community.general
 - i3
 ## Editor
 - Neovim
+## Games
+- Minecraft
 ## Yubikey
 - yubico-authenticator-bin
 - yubikey-manager

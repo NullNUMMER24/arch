@@ -1,0 +1,13 @@
+---
+- name: Install Zsh and change user's shell
+  community.general.pacman:
+    name:
+      - zsh
+      - zsh-completions
+      - zsh-syntax-highlighting
+    state: present
+
+- name: Change "{{ username }}"'s shell to Zsh
+  user:
+    name: "{{ username }}"
+    shell: /usr/bin/zsh

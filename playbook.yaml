@@ -14,6 +14,7 @@
       community.general.pacman:
         update_cache: true
         upgrade: true
+      when: update
 
 #################################################################################
 # i3
@@ -114,35 +115,33 @@
         state: directory
         mode: '0755'
 
-    - name: Install Zsh and change user's shell
-      community.general.pacman:
-        name:
-          - zsh
-          - zsh-completions
-          - zsh-syntax-highlighting
-        state: present
-
-    - name: Change "{{ username }}"'s shell to Zsh
-      user:
-        name: "{{ username }}"
-        shell: /usr/bin/zsh
+    - name: Include zsh tasks
+      ansible.builtin.include_tasks:
+        file: tasks/ohmyzsh.yml
+      when: zsh
       
     - name: Include fonts tasks
       ansible.builtin.include_tasks:
         file: tasks/fonts.yml
+      when: fonts
 
-    - name: Install Neovim
-      community.general.pacman:
-        name: neovim
-        state: present
+    - name: Include Neovim tasks
+      ansible.builtin.include_tasks:
+        file: tasks/neovim.yml
+      when: neovim
+
+    - name: Include vscode tasks
+      ansible.builtin.include_tasks:
+        file: tasks/vscode.yml
+      when: vscode
 
 #################################################################################
 # Notes
 #################################################################################
-    - name: install Obsidian
-      community.general.pacman:
-        name: obsidian
-        state: present
+    - name: Include obsidian task
+      ansible.builtin.include_tasks:
+        file: tasks/obsidian.yml
+      when: obsidian
 
 #################################################################################
 # Thunderbird
@@ -151,6 +150,7 @@
       community.general.pacman:
         name: thunderbird
         state: present
+      when: mail
 
 #################################################################################
 # Remote Connection
@@ -158,7 +158,8 @@
     - name: install Remmina (RDP)
       community.general.pacman:
         name: remmina
-        state: present 
+        state: present
+      when: remmina
 
 #################################################################################
 # Applications
