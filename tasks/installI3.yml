@@ -54,12 +54,12 @@
 
     - name: Copy home wallpaper
       ansible.builtin.copy:
-        src: "../files/i3/home.jpg"
+        src: ""../files/wallpapers/home.jpg""
         dest: "/home/{{ username }}/.config/i3/wallpapers/home.jpg"
 
     - name: Copy work wallpaper
       ansible.builtin.copy:
-        src: "../files/i3/work.jpg"
+        src: ""../files/wallpapers/work.jpg""
         dest: "/home/{{ username }}/.config/i3/wallpapers/work.jpg"
 
     - name: Copy i3blocks
@@ -71,6 +71,16 @@
       ansible.builtin.copy:
         src: "../files/i3/scripts/lock"
         dest: "/home/{{ username }}/.config/i3/scripts/"
+
+    - name: Copy image for lightdm
+      ansible.builtin.copy:
+        src: "../files/wallpapers/work.jpg"
+        dest: "/usr/pixmaps/lightdm_wallpaper.jpg"
+
+    - name: Copy greeter for lightdm
+      ansible.builtin.copy:
+        src: "../files/i3/slick-greeter.conf"
+        dest: "/etc/lightdm/"
 
     - name: Install feh
       community.general.pacman:
