@@ -54,12 +54,12 @@
 
 - name: Copy home wallpaper
   ansible.builtin.copy:
-    src: ""../files/wallpapers/home.jpg""
+    src: "../files/wallpapers/home.jpg"
     dest: "/home/{{ username }}/.config/i3/wallpapers/home.jpg"
 
 - name: Copy work wallpaper
   ansible.builtin.copy:
-    src: ""../files/wallpapers/work.jpg""
+    src: "../files/wallpapers/work.jpg"
     dest: "/home/{{ username }}/.config/i3/wallpapers/work.jpg"
 
 - name: Copy i3blocks
