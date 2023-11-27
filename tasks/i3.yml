@@ -67,7 +67,7 @@
 - name: Copy image for lightdm
   ansible.builtin.copy:
     src: "../files/wallpapers/work.jpg"
-    dest: "/usr/pixmaps/lightdm_wallpaper.jpg"
+    dest: "/usr/share/pixmaps/lightdm_wallpaper.jpg"
 
 - name: Copy greeter for lightdm
   ansible.builtin.copy:
