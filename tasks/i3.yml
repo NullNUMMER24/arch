@@ -14,18 +14,10 @@
     name: i3blocks
     state: present
 
-- name: Check and remove i3lock package
+- name: Check and install i3lock package
   community.general.pacman:
     name: i3lock
-    state: absent
-
-- name: Check and install i3lock-color package
-  community.general.pacman:
-    name: i3lock-color
     state: present
-    executable: yay
-    extra_args: --builder /var/cache/yay
-  become: no
 
 - name: Copy i3 default config
   ansible.builtin.copy:
