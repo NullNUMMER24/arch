@@ -14,9 +14,9 @@
     name: i3blocks
     state: present
 
-- name: Check and install i3blocks package
+- name: Check and remove i3lock package
   community.general.pacman:
-    name: i3blocks
+    name: i3lock
     state: absent
 
 - name: Check and install i3lock-color package
