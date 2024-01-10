@@ -1,8 +1,7 @@
 ---
 - name: install alacritty
   community.general.pacman:
-    name:
-    - alacritty
+    name: alacritty-git
     state: present
 
 - name: Create alacritty config folder

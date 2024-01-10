@@ -1,15 +1,15 @@
 # System
 update: true
 i3: false
-dotfiles: true
-fonts: true
+dotfiles: false
+fonts: false
 
 # Terminal
-zsh: true
-alacritty: true
+zsh: false
+alacritty: false
 
 # Notes
-obsidian: true
+obsidian: false
 
 # Communication
 mail: true
@@ -19,6 +19,9 @@ remmina: true
 
 # Browser
 chromium: true
+
+# KeePaas
+keepaas: true
 
 # Yubikey
 yubikey: true
@@ -31,11 +34,12 @@ neovim: true
 vscode: true
 
 # Games
-minecraft: false
+minecraft: true
 steam: false
+discord: true
 
 # Tools
 vm: true
 
 # User 
-username: 
+username:

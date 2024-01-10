@@ -26,7 +26,7 @@
 #################################################################################
     - name: Include i3 tasks
       ansible.builtin.include_tasks:
-        file: tasks/i3.yml
+        file: tasks/i3.yaml
       when: i3
 
     - name: Install flameshot
@@ -44,7 +44,7 @@
 #################################################################################
     - name: Include Alacritty tasks
       ansible.builtin.include_tasks:
-        file: tasks/alacritty.yml
+        file: tasks/alacritty.yaml
       when: alacritty
 
     - name: Include zsh tasks
@@ -59,7 +59,7 @@
 
     - name: Include Neovim tasks
       ansible.builtin.include_tasks:
-        file: tasks/neovim.yml
+        file: tasks/neovim.yaml
       when: neovim
 
     - name: Include vscode tasks
@@ -96,19 +96,21 @@
 #################################################################################
 # Applications
 #################################################################################
-    - name: install Chromium
-      community.general.pacman:
-        name:
-        - chromium
-        state: present
+    
+    - name: Include chromium task
+      ansible.builtin.include_tasks:
+        file: tasks/chromium.yml
+      when: chromium
 
     - name: Include Spotify task
       ansible.builtin.include_tasks:
-        file: tasks/spotify.yml
+        file: tasks/spotify.yaml
+      when: spotify
 
     - name: Include Discord task
       ansible.builtin.include_tasks:
         file: tasks/discord.yml
+      when: discord
 
     - name: Include Minecraft task
       ansible.builtin.include_tasks:
@@ -121,13 +123,20 @@
       when: steam
 
 #################################################################################
+# KeePaas
+#################################################################################
+    - name: Include KeePaas task
+      ansible.builtin.include_tasks:
+        file: tasks/keepaas.yml
+      when: keepaas
+
+#################################################################################
 # Yubikey
 #################################################################################
     - name: Include Yubkey task
       ansible.builtin.include_tasks:
         file: tasks/yubikey.yml
-      when: minecraft
-
+      when: yubikey
 
 #################################################################################
 # Monitor
@@ -150,30 +159,7 @@
 #################################################################################
 # Virt-Manager
 #################################################################################
-    - name: Install KVM packages
-      community.general.pacman:
-        name:
-        - qemu
-        - virt-manager
-        - virt-viewer
-        - dnsmasq
-        - vde2
-        - bridge-utils
-        - openbsd-netcat
-        - dmidecode
-        state: present
-      when: vm
-
-    - name: Install libguestfs
-      community.general.pacman:
-        name:
-        - libguestfs
-        state: present
-      when: vm
-
-    - name: enable libvirt service
-      ansible.builtin.service:
-        name: libvirtd.service
-        state: started
-        enabled: yes
-      when: vm
+    - name: Include Virt-Manager task
+      ansible.builtin.include_tasks:
+        file: tasks/VirtualManager.yml
+      when: yubikey
