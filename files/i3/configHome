@@ -266,9 +266,8 @@ bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 # Change Config
 #############################################
 # Shortcuts
-bindsym $mod+Shift+a exec "\cp -f ~/.config/i3/configHome ~/.config/i3/config && i3-msg reload && exec feh --bg-fill ~/.dotfiles/files/wallpaper/home.jpg"
-bindsym $mod+Shift+y exec "\cp -f ~/.config/i3/configWork ~/.config/i3/config && i3-msg reload && exec feh --bg-fill ~/.dotfiles/files/wallpaper/work.jpg"
-bindsym $mod+Shift+a+2 exec "\cp -f ~/.config/i3/config2 ~/.config/i3/config && i3-msg reload"
+bindsym $mod+Shift+a exec "\ln -sf ~/git/arch/files/i3/configHome ~/.config/i3/config && i3-msg reload && exec feh --bg-fill ~/.dotfiles/files/wallpaper/home.jpg"
+bindsym $mod+Shift+y exec "\ln -sf ~/git/arch/files/i3/configWork ~/.config/i3/config && i3-msg reload && exec feh --bg-fill ~/.dotfiles/files/wallpaper/work.jpg"
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -354,7 +353,7 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec_always feh --bg-fill ~/.dotfiles/files/wallpaper/home.jpg
+exec_always feh --bg-fill ~/git/arch/files/wallpapers/home.jpg
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -467,7 +466,7 @@ bindsym $mod+t exec rofi -show window \
 
 # Bar
 bar {
-        status_command i3blocks -c /home/$USER/.config/i3blocks/i3blocks.conf
+        status_command i3blocks -c /home/$USER/.config/i3/i3blocks.conf
         font pango: Droid Sans Mono 11
         position top
         i3bar_command i3bar --transparency
