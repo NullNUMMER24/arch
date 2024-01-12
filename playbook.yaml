@@ -98,8 +98,7 @@
 #################################################################################
     - name: install Chromium
       community.general.pacman:
-        name:
-        - chromium
+        name: chromium
         state: present
 
     - name: Include Spotify task

@@ -209,8 +209,8 @@ bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 # Change Config
 #############################################
 # Shortcuts
-bindsym $mod+Shift+a exec "\cp -f ~/.config/i3/configHome ~/.config/i3/config && i3-msg reload && exec feh --bg-fill /home/$(whoami)/.config/i3/wallpapers/home.jpg"
-bindsym $mod+Shift+y exec "\cp -f ~/.config/i3/configWork ~/.config/i3/config && i3-msg reload && exec feh --bg-fill /home/$(whoami)/.config/i3/wallpapers/work.jpg"
+bindsym $mod+Shift+a exec "\cp -f ~/.config/i3/configHome ~/.config/i3/config && i3-msg reload && exec feh --bg-fill ~/.dotfiles/files/wallpaper/home.jpg"
+bindsym $mod+Shift+y exec "\cp -f ~/.config/i3/configWork ~/.config/i3/config && i3-msg reload && exec feh --bg-fill ~/.dotfiles/files/wallpaper/work.jpg"
 bindsym $mod+Shift+a+2 exec "\cp -f ~/.config/i3/config2 ~/.config/i3/config && i3-msg reload"
 
 ##########################################
@@ -297,7 +297,7 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec_always feh --bg-fill /home/$(whoami)/.config/i3/wallpapers/work.jpg
+exec_always feh --bg-fill ~/.dotfiles/files/wallpaper/work.jpg
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600

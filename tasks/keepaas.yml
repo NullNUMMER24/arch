@@ -1,5 +1,0 @@
----
-- name: Install keepaasxc
-  community.general.pacman:
-    name: keepaasxc
-    state: present

@@ -1,5 +1,0 @@
----
-- name: install steam
-  community.general.pacman:
-    name: steam
-    state: present

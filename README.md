@@ -1,11 +1,9 @@
 # arch
 This is a Repository to configure a linux environment. 
-# Community General Pacman Module
-## Link to documentation
-https://docs.ansible.com/ansible/latest/collections/community/general/pacman_module.html
-## How to install it
+# How it works
+If you are on a new arch installation execute the `start.sh` script
 ```
-ansible-galaxy collection install community.general
+bash ~/.dotfiles/start.sh
 ```
 
 # Packages
