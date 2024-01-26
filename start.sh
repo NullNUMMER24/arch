@@ -6,10 +6,15 @@ DOTFILES_DIR="$HOME/.dotfiles"
 mkdir -p "$DOTFILES_DIR"
 mkdir -p "$DOTFILES_DIR"/wallpapers
 mkdir -p "$DOTFILES_DIR"/i3-dotfiles
+mkdir -p "$DOTFILES_DIR"/alacritty
+
+
+mkdir -p "$HOME"/.config/alacritty
 
 # Copy files to folder
-cp -r files/wallpapers/* "$DOTFILES_DIR"/wallpapers
-cp -r files/i3/* "$DOTFILES_DIR"/i3-dotfiles
+cp -r files/wallpapers/* "$DOTFILES_DIR"/wallpapers/
+cp -r files/i3/* "$DOTFILES_DIR"/i3-dotfiles/
+cp -r files/alacrity/* "$DOTFILES_DIR"/alacritty/
 
 
 # Copy files to .dotfiles folder
@@ -107,10 +112,10 @@ install_I3PACKAGES() {
     for program in "${I3PACKAGES[@]}"; do
         yay --noconfirm -S "$program" >/dev/null
     done
-    configure_i3
+    apply_dotfiles
 }
 
-configure_i3() {
+apply_dotfiles() {
     # Copy my i3config files
     cp -r "$DOTFILES_DIR"/i3/configHome "$HOME"/.config/i3/config
     cp -r "$DOTFILES_DIR"/i3/configWork "$HOME"/.config/i3/config
@@ -120,7 +125,11 @@ configure_i3() {
     cp -r "$DOTFILES_DIR"/wallpapers/home.jpg /usr/share/pixmaps/lightdm_wallpaper.jpg
   
     # Copy i3block-stuff
+    cp -r "$DOTFILES_DIR"/i3/i3blocks.conf "$HOME"/.config/i3/i3blocks.conf
+    cp -r "$DOTFILES_DIR"/i3/i3blocks/* "$HOME"/.config/i3/scripts/*
 
+    # Copy alacritty config
+    cp -r "$DOTFILES_DIR"/alacritty/alacritty.toml "$HOME"/.config/alacritty/alacritty.toml
 }
 
 install_PROGRAMS

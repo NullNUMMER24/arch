@@ -1,0 +1,26 @@
+[window]
+decorations = "Full"
+opacity = 0.8
+title = "Törminal"
+
+[colors]
+primary.foreground = "0xdfbf8e"
+primary.background = "0x282828"
+
+normal.black = "0x665c54"
+normal.red = "0xea6962"
+normal.green = "0xa9b665"
+normal.yellow = "0xe78a4e"
+normal.blue = "0x7daea3"
+normal.magenta = "0xd3869b"
+normal.cyan = "0x89b482"
+normal.white = "0xdfbf8e"
+
+bright.black = "0x928374"
+bright.red = "0xea6962"
+bright.green = "0xa9b665"
+bright.yellow = "0xe3a84e"
+bright.blue = "0x7daea3"
+bright.magenta = "0xd3869b"
+bright.cyan = "0x89b482"
+bright.white = "0xdfbf8e"
