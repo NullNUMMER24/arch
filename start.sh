@@ -21,6 +21,13 @@ PROGRAMS=(
     "obsidian"
     "keepassxc"
     "neovim"
+    "chromium"
+    "flameshot"
+    "blueman"
+    "alacritty"
+    "arandr"
+    "autorandr"
+    "nextcloud-client"
     #"program"
 )
 
@@ -58,6 +65,18 @@ I3PACKAGES=(
     "rofi"
     "picom"
 )
+
+ohmyzsh=(
+    "zsh"
+    "zsh-completions"
+    "zsh-syntax-highlighting"
+)
+
+install_ohmyzsh() {
+    for program in "${ohmyzsh[@]}"; do
+        yay --noconfirm -S "$program" >/dev/null
+    done
+}
 
 install_PROGRAMS() {
     for program in "${PROGRAMS[@]}"; do
@@ -100,6 +119,8 @@ configure_i3() {
     cp -r "$DOTFILES_DIR"/i3/slick-greeter.conf /etc/lightdm/slick-greeter.conf
     cp -r "$DOTFILES_DIR"/wallpapers/home.jpg /usr/share/pixmaps/lightdm_wallpaper.jpg
   
+    # Copy i3block-stuff
+
 }
 
 install_PROGRAMS
