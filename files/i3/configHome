@@ -266,8 +266,8 @@ bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 # Change Config
 #############################################
 # Shortcuts
-bindsym $mod+Shift+a exec "\ln -sf ~/git/arch/files/i3/configHome ~/.config/i3/config && i3-msg reload && exec feh --bg-fill ~/.dotfiles/files/wallpaper/home.jpg"
-bindsym $mod+Shift+y exec "\ln -sf ~/git/arch/files/i3/configWork ~/.config/i3/config && i3-msg reload && exec feh --bg-fill ~/.dotfiles/files/wallpaper/work.jpg"
+bindsym $mod+Shift+a exec "\cp -f ~/.config/i3/configHome ~/.config/i3/config && i3-msg reload && exec feh --bg-fill $DOTFILES_DIR/wallpapers/home.jpg"
+bindsym $mod+Shift+y exec "\cp -f ~/.config/i3/configWork ~/.config/i3/config && i3-msg reload && exec feh --bg-fill $DOTFILES_DIR/wallpapers/work.jpg"
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -287,8 +287,8 @@ assign [class="(?i)firefox"] $ws2
 assign [class="Thunar"] $ws3
 assign [class="obsidian"] $ws4
 assign [class="discord"] $ws5
-assign [class="keepassxc"] $ws6
-assign [class="teams"] $ws8
+assign [class="(?i)keepassxc"] $ws6
+assign [class="(?i)teams"] $ws8
 assign [class="spotify"] $ws9
 
 # automatic set focus new window if it opens on another workspace than the current:
