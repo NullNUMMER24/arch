@@ -1,9 +1,10 @@
 #!/bin/bash
 
-export DOTFILES_DIR="$HOME/.dotfiles"
+
 
 # Create .dotfiles folder
-mkdir -p "$DOTFILES_DIR"
+mkdir -p "$HOME/.dotfiles"
+export DOTFILES_DIR="$HOME/.dotfiles"
 mkdir -p "$DOTFILES_DIR"/wallpapers
 mkdir -p "$DOTFILES_DIR"/i3-dotfiles
 mkdir -p "$DOTFILES_DIR"/alacritty
@@ -12,9 +13,9 @@ mkdir -p "$DOTFILES_DIR"/alacritty
 mkdir -p "$HOME"/.config/alacritty
 
 # Copy files to folder
-cp -r files/wallpapers/* "$DOTFILES_DIR"/wallpapers/
-cp -r files/i3/* "$DOTFILES_DIR"/i3-dotfiles/
-cp -r files/alacritty/* "$DOTFILES_DIR"/alacritty/
+cp -rf files/wallpapers/* "$DOTFILES_DIR"/wallpapers/
+cp -rf files/i3/* "$DOTFILES_DIR"/i3-dotfiles/
+cp -rf files/alacritty/* "$DOTFILES_DIR"/alacritty/
 
 # List with programs to install
 PROGRAMS=(
@@ -113,20 +114,20 @@ install_I3PACKAGES() {
 
 apply_dotfiles() {
     # Copy my i3config files
-    cp -r "$DOTFILES_DIR"/i3-dotfiles/configHome "$HOME"/.config/i3/configHome
-    cp -r "$DOTFILES_DIR"/i3-dotfiles/configWork "$HOME"/.config/i3/configWork
-    cp -r "$DOTFILES_DIR"/i3-dotfiles/configWork "$HOME"/.config/i3/config
+    cp -rf "$DOTFILES_DIR"/i3-dotfiles/configHome "$HOME"/.config/i3/configHome
+    cp -rf "$DOTFILES_DIR"/i3-dotfiles/configWork "$HOME"/.config/i3/configWork
+    cp -rf "$DOTFILES_DIR"/i3-dotfiles/configWork "$HOME"/.config/i3/config
 
     # Copy lightdm-stuff
-    sudo cp -r "$DOTFILES_DIR"/i3-dotfiles/slick-greeter.conf /etc/lightdm/slick-greeter.conf
-    sudo cp -r "$DOTFILES_DIR"/wallpapers/home.jpg /usr/share/pixmaps/lightdm_wallpaper.jpg
+    sudo cp -rf "$DOTFILES_DIR"/i3-dotfiles/slick-greeter.conf /etc/lightdm/slick-greeter.conf
+    sudo cp -rf "$DOTFILES_DIR"/wallpapers/home.jpg /usr/share/pixmaps/lightdm_wallpaper.jpg
   
     # Copy i3block-stuff
-    cp -r "$DOTFILES_DIR"/i3-dotfiles/i3blocks.conf "$HOME"/.config/i3/i3blocks.conf
-    cp -r "$DOTFILES_DIR"/i3-dotfiles/i3blocks/* "$HOME"/.config/i3/scripts/
+    cp -rf "$DOTFILES_DIR"/i3-dotfiles/i3blocks.conf "$HOME"/.config/i3/i3blocks.conf
+    cp -rf "$DOTFILES_DIR"/i3-dotfiles/i3blocks/* "$HOME"/.config/i3/scripts/
 
     # Copy alacritty config
-    cp -r "$DOTFILES_DIR"/alacritty/alacritty.toml "$HOME"/.config/alacritty/alacritty.toml
+    cp -rf "$DOTFILES_DIR"/alacritty/alacritty.toml "$HOME"/.config/alacritty/alacritty.toml
 }
 
 #install_PROGRAMS
