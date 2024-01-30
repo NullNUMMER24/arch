@@ -284,12 +284,12 @@ bindsym $mod+Shift+y exec "\cp -f ~/.config/i3/configWork ~/.config/i3/config &&
 # bind program to workspace and focus to them on startup:
 assign [class="alacritty"] $ws1
 assign [class="(?i)firefox"] $ws2
-assign [class="Thunar"] $ws3
+assign [class="(?i)keepassxc"] $ws3
 assign [class="obsidian"] $ws4
 assign [class="discord"] $ws5
-assign [class="(?i)keepassxc"] $ws6
+assign [class="Thunar"] $ws6
 assign [class="(?i)teams"] $ws8
-assign [class="spotify"] $ws9
+assign [class="(?i)spotify"] $ws9
 
 # automatic set focus new window if it opens on another workspace than the current:
 for_window [class=alacritty] focus
