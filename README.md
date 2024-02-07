@@ -13,6 +13,7 @@ bash ~/.dotfiles/start.sh
 - linux-firmware --> This provides firmware files for various hardware devices.
 - networkmanager --> This package is a convenient way to manager your network connections.
 - feh --> Wallpaper
+- polybar --> Taskbar (https://github.com/polybar/)
 
 # Software
 ## Notes
@@ -42,5 +43,6 @@ bash ~/.dotfiles/start.sh
 - yubikey-personalization-gui
 
 
-# Inspired by
-https://github.com/linuxpiper/ansible-arch-setup/
+# Problems
+## polybar.sh not executeable
+At the moment this is can not be executed. --> Wrong rights

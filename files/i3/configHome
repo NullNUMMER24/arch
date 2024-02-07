@@ -465,16 +465,8 @@ bindsym $mod+t exec rofi -show window \
 #		-config ~/.config/rofi/rofidmenu.rasi
 
 # Bar
-bar {
-        status_command i3blocks -c /home/$USER/.config/i3/i3blocks.conf
-        font pango: Droid Sans Mono 11
-        position top
-        i3bar_command i3bar --transparency
-        colors{
-          separator #00000000
-          background #00000000
-        }
-}
+exec_always --no-startup-id $HOME/.config/polybar/polybar.sh
+#exec_always polybar testbar --config=$HOME/.config/polybar/polybar_config 2>&1
 
 ########################################
 # Autostart                            #

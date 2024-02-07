@@ -66,6 +66,7 @@ I3PACKAGES=(
     "feh"
     "rofi"
     "picom"
+    "polybar"
 )
 
 ohmyzsh=(
@@ -125,6 +126,11 @@ apply_dotfiles() {
     # Copy i3block-stuff
     cp -rf "$DOTFILES_DIR"/i3-dotfiles/i3blocks.conf "$HOME"/.config/i3/i3blocks.conf
     cp -rf "$DOTFILES_DIR"/i3-dotfiles/i3blocks/* "$HOME"/.config/i3/scripts/
+
+    # polybar-stuff ##### polybar.sh not executeable #####
+    mkdir -p "$HOME"/.config/polybar
+    cp -rf "$DOTFILES_DIR"/i3-dotfiles/polybar/polybar.sh "$HOME"/.config/polybar/polybar.sh
+    cp -rf "$DOTFILES_DIR"/i3-dotfiles/polybar/* "$HOME"/.config/polybar/
 
     # Copy alacritty config
     cp -rf "$DOTFILES_DIR"/alacritty/alacritty.toml "$HOME"/.config/alacritty/alacritty.toml
