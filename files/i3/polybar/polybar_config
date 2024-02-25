@@ -26,7 +26,46 @@ alert = #A54242
 disabled = #707880
 
 #-+-+-+-+-#
-[bar/testbar]
+[bar/mainbar]
+width = 100%
+height = 28pt
+radius = 6
+
+; dpi = 96
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3pt
+
+border-size = 4pt
+border-color = #00000000
+
+padding-left = 0
+padding-right = 1
+
+module-margin = 1
+
+separator = |
+separator-foreground = ${colors.disabled}
+
+font-0 = monospace;2
+
+modules-left = xworkspaces xwindow
+modules-right = filesystem pulseaudio xkeyboard memory cpu wlan eth date
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+
+; wm-restack = generic
+; wm-restack = bspwm
+; wm-restack = i3
+
+; override-redirect = true
+
+[bar/secondbar]
 width = 100%
 height = 28pt
 radius = 6
@@ -104,6 +143,33 @@ label-mounted = %{F#F0C674}%mountpoint%%{F-} %percentage_used%%
 
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.disabled}
+
+[module/battery]
+type = internal/battery
+
+format-charging = <label-charging>
+format-discharging = <label-discharging>
+
+format-charging-foreground = ${colors.primary}
+format-discharging-foreground = ${colors.primary}
+
+format-charging-prefix = "BAT "
+format-discharging-prefix = "BAT "
+
+label-charging = %{F#F0C674}<label-charging-state>%{F-} <percentage>%
+label-discharging = %{F#F0C674}<label-discharging-state>%{F-} <percentage>%
+
+label-charging-state = 
+label-discharging-state = 
+
+label-charging-foreground = ${colors.primary}
+label-discharging-foreground = ${colors.primary}
+
+label-charging-padding = 1
+label-discharging-padding = 1
+
+label-charging-font = 3
+label-discharging-font = 3
 
 [module/pulseaudio]
 type = internal/pulseaudio
