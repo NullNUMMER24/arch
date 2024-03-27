@@ -1,14 +1,11 @@
 #!/bin/bash
 
-
-
 # Create .dotfiles folder
 mkdir -p "$HOME/.dotfiles"
 export DOTFILES_DIR="$HOME/.dotfiles"
 mkdir -p "$DOTFILES_DIR"/wallpapers
 mkdir -p "$DOTFILES_DIR"/i3-dotfiles
 mkdir -p "$DOTFILES_DIR"/alacritty
-
 
 mkdir -p "$HOME"/.config/alacritty
 
@@ -30,6 +27,8 @@ PROGRAMS=(
     "arandr"
     "autorandr"
     "nextcloud-client"
+    "easyeffects"
+    "calf"
     #"program"
 )
 
@@ -122,7 +121,7 @@ apply_dotfiles() {
     # Copy lightdm-stuff
     sudo cp -rf "$DOTFILES_DIR"/i3-dotfiles/slick-greeter.conf /etc/lightdm/slick-greeter.conf
     sudo cp -rf "$DOTFILES_DIR"/wallpapers/home.jpg /usr/share/pixmaps/lightdm_wallpaper.jpg
-  
+
     # Copy i3block-stuff
     cp -rf "$DOTFILES_DIR"/i3-dotfiles/i3blocks.conf "$HOME"/.config/i3/i3blocks.conf
     cp -rf "$DOTFILES_DIR"/i3-dotfiles/i3blocks/* "$HOME"/.config/i3/scripts/
